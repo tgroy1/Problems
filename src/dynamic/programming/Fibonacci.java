@@ -82,14 +82,30 @@ public class Fibonacci {
 
 		return list.get(n);
 	}
+	
+	// Tabulation using primitive integer loop. Avg time = 3.8 microseconds
+	public long fib4(int n) {
+
+		long first = 0;
+		long second = 1;
+		long third = 0;
+		for (int i = 3; i <= n+1; i++) {
+			third = first + second;
+            first = second;
+            second = third;
+        }
+		return second;
+	}
 
 	public static void main(String[] args) {
 
+		//0 1 1 2 3 5 8 13 21 where F(0)=0, F(1)=1...
+		
 		// Avg times specified in method docs for n = 50
 		Fibonacci sol = new Fibonacci();
 
 		long start = System.nanoTime();
-		long res = sol.fib3(50);
+		long res = sol.fib4(50);
 		long end = System.nanoTime();
 
 		System.out.println("Result is " + res + ", takes " + (end - start) + " ns");

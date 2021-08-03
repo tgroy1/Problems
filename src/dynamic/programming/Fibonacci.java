@@ -23,20 +23,22 @@ public class Fibonacci {
 
 	// Memoization using a HashMap. Avg time = 650 microseconds
 	private long fib2(int n) {
-
 		Map<Integer, Long> map = new HashMap<>();
-		map.put(0, 0l);
-		map.put(1, 1l);
-
-		return fibMemHelper(n, map);
+		return memHelper(n, map);
 	}
 
-	private long fibMemHelper(int n, Map<Integer, Long> map) {
+	private long memHelper(int n, Map<Integer, Long> map) {
 		if (map.containsKey(n)) {
 			return map.get(n);
 		}
+		
+		if (n == 0) {
+			return 0;
+		} else if (n == 1) {
+			return 1;
+		}
 
-		long res = fibMemHelper(n - 1, map) + fibMemHelper(n - 2, map);
+		long res = memHelper(n - 1, map) + memHelper(n - 2, map);
 		map.put(n, res);
 
 		return res;
@@ -103,15 +105,17 @@ public class Fibonacci {
 		return third;
 	}
 
+	// Avg times specified in method docs for 3 runs
 	public static void main(String[] args) {
 
 		// 0 1 1 2 3 5 8 13 21 where F(0)=0, F(1)=1...
 
-		// Avg times specified in method docs for n = 50 and 3 runs
 		Fibonacci sol = new Fibonacci();
 
 		long start = System.nanoTime();
-		long res = sol.fib5(50);
+		
+		long res = sol.fib2(50); //12586269025
+		
 		long end = System.nanoTime();
 
 		System.out.println("Result is " + res + ", takes " + (end - start) + " ns");

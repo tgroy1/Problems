@@ -9,8 +9,8 @@ import java.util.Map;
 
 public class Fibonacci {
 
-	// Memoization using a HashMap. Avg time = 650 microseconds
-	public long fib1(int n) {
+	// Basic recursion approach. Avg time = 7,84,01,415 microseconds!!!
+	private long fib1(int n) {
 
 		if (n == 0) {
 			return 0;
@@ -18,26 +18,32 @@ public class Fibonacci {
 			return 1;
 		}
 
+		return fib1(n - 1) + fib1(n - 2);
+	}
+
+	// Memoization using a HashMap. Avg time = 650 microseconds
+	private long fib2(int n) {
+
 		Map<Integer, Long> map = new HashMap<>();
 		map.put(0, 0l);
 		map.put(1, 1l);
 
-		return fibMem(n, map);
+		return fibMemHelper(n, map);
 	}
 
-	private long fibMem(int n, Map<Integer, Long> map) {
+	private long fibMemHelper(int n, Map<Integer, Long> map) {
 		if (map.containsKey(n)) {
 			return map.get(n);
 		}
 
-		long res = fibMem(n - 1, map) + fibMem(n - 2, map);
+		long res = fibMemHelper(n - 1, map) + fibMemHelper(n - 2, map);
 		map.put(n, res);
 
 		return res;
 	}
 
 	// Tabulation using primitive array. Avg time = 6.7 microseconds
-	public long fib2(int n) {
+	private long fib3(int n) {
 
 		if (n == 0) {
 			return 0;
@@ -61,7 +67,7 @@ public class Fibonacci {
 	}
 
 	// Tabulation using arrayList. Avg time = 850 microseconds
-	public long fib3(int n) {
+	private long fib4(int n) {
 
 		if (n == 0) {
 			return 0;
@@ -82,30 +88,30 @@ public class Fibonacci {
 
 		return list.get(n);
 	}
-	
-	// Tabulation using primitive integer loop. Avg time = 3.8 microseconds
-	public long fib4(int n) {
+
+	// Basic iterative approach. Avg time = 3.8 microseconds
+	private long fib5(int n) {
 
 		long first = 0;
 		long second = 1;
-		long third = 0;
+		long third = first + second;
 		for (int i = 2; i <= n; i++) {
 			third = first + second;
-            first = second;
-            second = third;
-        }
-		return second;
+			first = second;
+			second = third;
+		}
+		return third;
 	}
 
 	public static void main(String[] args) {
 
-		//0 1 1 2 3 5 8 13 21 where F(0)=0, F(1)=1...
-		
-		// Avg times specified in method docs for n = 50
+		// 0 1 1 2 3 5 8 13 21 where F(0)=0, F(1)=1...
+
+		// Avg times specified in method docs for n = 50 and 3 runs
 		Fibonacci sol = new Fibonacci();
 
 		long start = System.nanoTime();
-		long res = sol.fib4(50);
+		long res = sol.fib5(50);
 		long end = System.nanoTime();
 
 		System.out.println("Result is " + res + ", takes " + (end - start) + " ns");

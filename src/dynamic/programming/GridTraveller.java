@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class GridTraveller {
 
-	// Basic recursion approach. Avg time = 9,201,879 milliseconds
+	// Basic recursion approach. Avg time = 9,201,879 microseconds
 	private long gridTraveller1(int m, int n) {
 		if (m == 0 || n == 0) {
 			return 0;
@@ -22,7 +22,7 @@ public class GridTraveller {
 		return gridTraveller1(m - 1, n) + gridTraveller1(m, n - 1);
 	}
 
-	// Memoization using a HashMap. Avg time = 3120 microseconds
+	// Memoization technique. Avg time = 3120 microseconds
 	private long gridTraveller2(int m, int n) {
 		Map<String, Long> map = new HashMap<>();
 		return memHelper(m, n, map);

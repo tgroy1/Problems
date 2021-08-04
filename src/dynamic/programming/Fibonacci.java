@@ -21,7 +21,7 @@ public class Fibonacci {
 		return fib1(n - 1) + fib1(n - 2);
 	}
 
-	// Memoization using a HashMap. Avg time = 650 microseconds
+	// Memoization technique. Avg time = 650 microseconds
 	private long fib2(int n) {
 		Map<Integer, Long> map = new HashMap<>();
 		return memHelper(n, map);

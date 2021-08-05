@@ -69,7 +69,7 @@ public class CanSum {
 
 		long start = System.nanoTime();
 
-		int[] arr = { 7, 14};
+		int[] arr = {7, 14};
 		boolean res = sol.canSum2(300, arr); // false
 
 		long end = System.nanoTime();

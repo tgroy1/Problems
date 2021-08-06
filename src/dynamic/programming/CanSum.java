@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class CanSum {
 
-	// Basic recursion approach. Avg time = 6,256,935 microseconds
+	// Basic recursion approach. Avg time = 6,256,935 microseconds (6.2 seconds)
 	private boolean canSum1(int targetSum, int[] nums) {
 
 		if (targetSum == 0) {

@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class GridTraveller {
 
-	// Basic recursion approach. Avg time = 9,201,879 microseconds
+	// Basic recursion approach. Avg time = 9,201,879 microseconds (9 seconds)
 	private long gridTraveller1(int m, int n) {
 		if (m == 0 || n == 0) {
 			return 0;

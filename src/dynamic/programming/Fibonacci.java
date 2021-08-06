@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class Fibonacci {
 
-	// Basic recursion approach. Avg time = 7,84,01,415 microseconds!!!
+	// Basic recursion approach. Avg time = 78,401,415 microseconds (78.4 seconds)
 	private long fib1(int n) {
 
 		if (n == 0) {

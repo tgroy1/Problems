@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class HowSum {
 	
-	// Basic recursion approach. Avg time = 5,962,090 microseconds
+	// Basic recursion approach. Avg time = 6,026,118 microseconds (6 seconds)
 	private List<Integer> howSum1(int targetSum, int[] nums) {
 		
 		if (targetSum == 0) {
@@ -35,7 +35,7 @@ public class HowSum {
 		
 	}
 	
-	// Memoization technique. Avg time = 182 microseconds
+	// Memoization technique. Avg time = 159 microseconds
 	private List<Integer> howSum2(int targetSum, int[] nums) {
 		
 		Map<Integer, List<Integer>> map = new HashMap<>();
@@ -58,13 +58,14 @@ public class HowSum {
 		for (int num : nums) {
 			int remainder = targetSum - num;
 			List<Integer> list = memHelper(remainder, nums, map);
-			map.put(targetSum, list);
 			if (list != null) {
 				list.add(num);
+				map.put(targetSum, list);
 				return list;
 			}
 		}
 		
+		map.put(targetSum, null);
 		return null;
 	}
 
@@ -75,8 +76,8 @@ public class HowSum {
 
 		long start = System.nanoTime();
 
-		int[] arr = {7, 14};
-		List<Integer> res = sol.howSum1(300, arr); // false
+		int[] arr = {7,14};
+		List<Integer> res = sol.howSum1(300, arr);
 
 		long end = System.nanoTime();
 

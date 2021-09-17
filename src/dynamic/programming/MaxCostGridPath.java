@@ -19,9 +19,11 @@ public class MaxCostGridPath {
 	
 	private static int findMaxCost(int[][] grid, int m, int n) {
 		
-		if (m<0 || n>4) {
+		int maxColIndex = grid[0].length-1;
+		
+		if (m<0 || n>maxColIndex) {
 			return 0;
-		} else if (m==0 && n==4) {
+		} else if (m==0 && n==maxColIndex) {
 			return grid[m][n];
 		} else {
 			return grid[m][n] + Math.max(findMaxCost(grid, m-1, n), findMaxCost(grid, m, n+1));
@@ -46,10 +48,12 @@ public class MaxCostGridPath {
 			return map.get(key);
 		}
 		
-		if (m<0 || n>4) {
+		int maxColIndex = grid[0].length-1;
+		
+		if (m<0 || n>maxColIndex) {
 			map.put(key, 0);
 			return 0;
-		} else if (m==0 && n==4) {
+		} else if (m==0 && n==maxColIndex) {
 			int val = grid[m][n];
 			map.put(key, val);
 			return val;
@@ -65,7 +69,7 @@ public class MaxCostGridPath {
 		int[][] grid = new int[][] {
 			{0,0,0,0,5},
 			{0,1,1,1,0},
-			{2,0,0,0,0}
+			{2,0,0,0,10}
 		};
 		
 		int maxCost = findMaxCost2(grid);

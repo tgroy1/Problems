@@ -25,14 +25,16 @@ public class BestSum {
 		}
 
 		List<Integer> shortestSum = null;
+		int minSize = Integer.MAX_VALUE; //could also initialize it to targetSum+1, since in case of all 1s, size = targetSum
 
 		for (int num : nums) {
 			int remainder = targetSum - num;
 			List<Integer> list = bestSum1(remainder, nums);
 			if (list != null) {
 				list.add(num);
-				if (shortestSum == null || list.size() < shortestSum.size()) {
+				if (list.size() < minSize) {
 					shortestSum = list;
+					minSize = shortestSum.size();
 				}
 			}
 		}
@@ -58,6 +60,7 @@ public class BestSum {
 		}
 
 		List<Integer> shortestSum = null;
+		int minSize = Integer.MAX_VALUE; //could also initialize it to targetSum+1, since in case of all 1s, size = targetSum
 
 		for (int num : nums) {
 			int remainder = targetSum - num;
@@ -66,8 +69,9 @@ public class BestSum {
 				// very important...do not add num to list....that will modify memo map entries as well
 				List<Integer> newList = new ArrayList<>(list);
 				newList.add(num);
-				if (shortestSum == null || newList.size() < shortestSum.size()) {
+				if (newList.size() < minSize) {
 					shortestSum = newList;
+					minSize = shortestSum.size();
 				}
 			}
 		}

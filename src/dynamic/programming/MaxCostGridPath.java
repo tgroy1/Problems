@@ -29,6 +29,34 @@ public class MaxCostGridPath {
 			return grid[m][n] + Math.max(findMaxCost(grid, m-1, n), findMaxCost(grid, m, n+1));
 		}
 	}
+	
+	//Move from top-left to bottom-right and find the cost of path with max cost
+	
+	public static int findMaxCost3(int[][] grid) {
+		
+		int m = 0;
+		int n = 0;
+		
+		int maxCost = findMaxCost3(grid, m, n);
+		
+		return maxCost;
+	}
+	
+	private static int findMaxCost3(int[][] grid, int m, int n) {
+		
+		int maxColIndex = grid[0].length-1;
+		int maxRowIndex = grid.length-1;
+		
+		if (m>maxRowIndex || n>maxColIndex) {
+			return 0;
+		} else if (m==maxRowIndex && n==maxColIndex) {
+			return grid[m][n];
+		} else {
+			return grid[m][n] + Math.max(findMaxCost3(grid, m+1, n), findMaxCost3(grid, m, n+1));
+		}
+	}
+	
+	//Move from top-left to bottom-right and find the cost of path with max cost
 
 	//Memoization approach
 	public static int findMaxCost2(int[][] grid) {
@@ -72,7 +100,7 @@ public class MaxCostGridPath {
 			{2,0,0,0,10}
 		};
 		
-		int maxCost = findMaxCost2(grid);
+		int maxCost = findMaxCost3(grid);
 		System.out.println(maxCost);
 	}
 }

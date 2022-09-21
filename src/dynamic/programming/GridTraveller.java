@@ -76,7 +76,7 @@ public class GridTraveller {
 
 		long start = System.nanoTime();
 
-		long nWays = sol.gridTraveller3(30, 12); // 2311801440
+		long nWays = sol.gridTraveller3(3, 5); // 2311801440
 
 		long end = System.nanoTime();
 

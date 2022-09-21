@@ -25,7 +25,7 @@ public class BestSum {
 		}
 
 		List<Integer> shortestSum = null;
-		int minSize = Integer.MAX_VALUE; //could also initialize it to targetSum+1, since in case of all 1s, size = targetSum
+		int minSize = Integer.MAX_VALUE;
 
 		for (int num : nums) {
 			int remainder = targetSum - num;
